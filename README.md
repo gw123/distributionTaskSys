@@ -14,28 +14,29 @@
     *public $emergentKey   = 'emergentTask';// 紧急任务队列的key
     *public $customerKey   = 'customer';    //存放当前消费者状态的key
     
-# 消费者 分为三层  
-  ## 多个nodejs服务端 
-  ### * 接收执行者的请求 验证token ,分配任务 
-  ### * 接收执行者任务的执行结果 ,存放数据库 
+## 消费者 分为三层  
+  ### 多个nodejs服务端 
+  #### * 接收执行者的请求 验证token ,分配任务 
+  #### * 接收执行者任务的执行结果 ,存放数据库 
   
-  ## Nginx 负载层
-  ### * 负责将客户端的请求 负载nodejs服务器 , 
-  ### * 容错处理 ,当一台nodejs服务器挂掉可以 快速找替代者
+  ### Nginx 负载层
+  #### * 负责将客户端的请求 负载nodejs服务器 , 
+  #### * 容错处理 ,当一台nodejs服务器挂掉可以 快速找替代者
   
-  ## 执行者
-  ### * 请求nodejs服务器 获取任务 并执行
-  ### * 获取命令行的执行结果 提交到nodejs
+  ### 执行者
+  #### * 请求nodejs服务器 获取任务 并执行
+  #### * 获取命令行的执行结果 提交到nodejs
   
   
   
   ### customer 是一个本人写的 只有 MC两层的简单高效nodejs框架 ,主要是用了写api结果所以没有构建 view层.
     #### node.js 服务端执行步骤  
-     * 进入customer 目录 运行 node  app  8080  服务就启动了
+     *进入customer 目录 运行
+     *node  app  8080  服务就启动了
     #### nginx 启动步骤这里不做说明 ,请自行百度
     #### 客户端启动说明
-    *  进入 cd customer/console 
-    node  taskRuner
+    *进入 cd customer/console 
+    *node  taskRuner
     
   ### nginx 服务器配置文件
   
@@ -68,7 +69,6 @@
                proxy_set_header Connection "";  
                proxy_http_version 1.1;  
                proxy_pass  http://localhost;  
-               
            }  
       }  
       
